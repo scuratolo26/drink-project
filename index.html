@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<!-- sam test branch -->
 <html>
 
 <head>
   <meta charset=“utf-8”>
   <meta name=“viewport” content=“width=device-width, initial-scale=1”>
-  <title>Hello Bulma!</title>
+  <title>Drink Project</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
 </head>
 
@@ -20,9 +19,15 @@
       </div>
       <div class="tile is-child box">
         <p class="title">Favorites</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor
-          vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
+        <p id="facorites-container"></p>
       </div>
+      <!-- sam added this section -->
+      <div class="tile is-child box">
+        <p class="title">Random Fact</p>
+        <p id="random-fact-container"></p>
+        <button class="button is-light" id="newFactBtn" onclick="getNewFact()">Get New Fact</button>
+      </div>
+      <!-- sam added this section -->
     </div>
     <div class="tile is-parent">
       <div class="tile is-child box">
@@ -32,7 +37,7 @@
     </div>
   </div>
 
-
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="./assets/js/script.js"></script>
 </body>
 

@@ -13,20 +13,24 @@ COCKTAIL_SEARCH.addEventListener("keyup", (e) => {
 function getDrink() {
     fetch(DRINK_QUERY_URL + COCKTAIL_SEARCH.value)
         .then(function (response) {
-        return response.json();
+            return response.json();
         })
-        .then(function (data){
+        .then(function (data) {
             console.log(data);
         })
 }
 
-function getRandomFact() {
+// define container variable - sam
+var factContainer = $("#random-fact-container");
+// get random fact and display in container - sam
+function getNewFact() {
     fetch(RANDOM_FACT_QUERY)
-    .then(function (response) {
-    return response.json();
-    })
-    .then(function (data){
-        console.log(data.text);
-    })
-}
-getRandomFact();
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            factContainer.text(data.text);
+        })
+};
+// get random fact on page load - sam
+getNewFact();
