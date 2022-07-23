@@ -1,0 +1,29 @@
+<<<<<<< Updated upstream
+=======
+body {
+    background-image: url("https://media.istockphoto.com/vectors/alcohol-cocktails-drinks-hand-drawn-vintage-style-collection-and-vector-id861107394?k=20&m=861107394&s=612x612&w=0&h=4ARVYlvL2c_NzFbH29pPVpvRfmQxZ9TvjZ9YaVBPn2o=");
+    height: 100%;
+}
+
+.hero-body {
+    background-image: url("https://media.istockphoto.com/vectors/alcohol-cocktails-drinks-hand-drawn-vintage-style-collection-and-vector-id861107394?k=20&m=861107394&s=612x612&w=0&h=4ARVYlvL2c_NzFbH29pPVpvRfmQxZ9TvjZ9YaVBPn2o=");
+}
+
+.search {
+    background-color: #F2507F;
+}
+
+.favorites {
+    background-color: #28BAED;
+}
+
+.cocktail-background {
+    background-color: #443A77;
+}
+
+.fact {
+    background-color: #5FB038;
+}
+
+////
+>>>>>>> Stashed changes
