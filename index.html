@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- sam and jules did this -->
+<!-- sam did this -->
 <html>
 
 <head>
@@ -7,26 +7,41 @@
   <meta name=“viewport” content=“width=device-width, initial-scale=1”>
   <title>Hello Bulma!</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-<body>
 
+<body>
+  <section class="hero is-small">
+    <div class="hero-body">
+      <p class="title has-text-white is-size-1">
+        Thirsty
+      </p>
+      <p class="subtitle has-text-white">
+        A website for your cocktail and random fact needs.
+      </p>
+    </div>
+  </section>
 
   <div class="tile is-ancestor">
     <div class="tile is-4 is-vertical is-parent">
-      <div class="tile is-child box">
-        <p class="">Search</p>
+      <div class="tile is-child box search">
+        <p class="has-text-black">Search</p>
         <input type="text" id="cocktail-search">
       </div>
-      <div class="tile is-child box">
+      <div class="tile is-child box fact">
+        <p class="title">Random Fact</p>
+        <p>Insert Fact Here</p>
+      </div>
+      <div class="tile is-child box favorites">
         <p class="title">Favorites</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor
           vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p>
       </div>
     </div>
     <div class="tile is-parent">
-      <div class="tile is-child box">
-        <p class="title">Cocktail List</p>
+      <div class="tile is-child box cocktail-background">
+        <p class="title has-background-warning has-text-centered">Cocktail List</p>
 
       </div>
     </div>
