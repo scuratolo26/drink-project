@@ -4,7 +4,8 @@
 <head>
   <meta charset=“utf-8”>
   <meta name=“viewport” content=“width=device-width, initial-scale=1”>
-  <title>Drink Project</title>
+  <title>Thirsty</title>
+  <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
@@ -25,13 +26,14 @@
   <div class="tile is-ancestor">
     <div class="tile is-4 is-vertical is-parent">
       <div class="tile is-child box search">
-        <p class="has-text-black">Search</p>
-        <input type="text" id="cocktail-search">
+        <p class="has-text-black title">Search</p>
+        <input type="text" size="30" id="cocktail-search">
+        <button class="button is-light" id="cocktail-search-btn">Search</button>
       </div>
-      <div class="tile is-child box fact">
-        <p class="title">Random Fact</p>
-        <p>Insert Fact Here</p>
-      </div>
+      <!-- <div class="tile is-child box fact">
+        <p class="title">random fact</p>
+        <p>insert fact here</p>
+      </div> -->
       <div class="tile is-child box favorites">
         <p class="title">Favorites</p>
         <p id="facorites-container"></p>

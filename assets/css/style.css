@@ -22,3 +22,7 @@ body {
 .fact {
     background-color: #5FB038;
 }
+
+button {
+    margin-top: 10px;
+}

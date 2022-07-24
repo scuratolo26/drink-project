@@ -1,7 +1,11 @@
 const DRINK_QUERY_URL = ("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=");
 const RANDOM_FACT_QUERY = ("https://uselessfacts.jsph.pl/random.json?language=en");
 const COCKTAIL_SEARCH = document.querySelector("#cocktail-search");
+const COCKTAIL_SEARCH_BTN = document.querySelector("#cocktail-search-btn");
 
+COCKTAIL_SEARCH_BTN.addEventListener("click", () => {
+    getDrink();
+});
 COCKTAIL_SEARCH.addEventListener("keyup", (e) => {
     if (e.keyCode == 13) {
         getDrink();
@@ -17,6 +21,7 @@ function getDrink() {
         })
         .then(function (data) {
             console.log(data);
+            console.log(data.drinks[0].strDrink);
         })
 }
 
