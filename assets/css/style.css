@@ -5,6 +5,11 @@ body {
 
 .hero-body {
     background-image: url("https://media.istockphoto.com/vectors/alcohol-cocktails-drinks-hand-drawn-vintage-style-collection-and-vector-id861107394?k=20&m=861107394&s=612x612&w=0&h=4ARVYlvL2c_NzFbH29pPVpvRfmQxZ9TvjZ9YaVBPn2o=");
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
 .search {
@@ -17,6 +22,19 @@ body {
 
 .cocktail-background {
     background-color: #443A77;
+}
+
+.cocktail-container {
+    color: white;
+}
+
+.cocktail-list-item {
+    width: 25%;
+}
+
+.cocktail-list-item:hover {
+    cursor: pointer;
+    color: #ffe08a;
 }
 
 .fact {
