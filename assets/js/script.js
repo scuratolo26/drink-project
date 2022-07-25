@@ -33,4 +33,4 @@ function getNewFact() {
         })
 };
 // get random fact on page load - sam
-getNewFact();
+getNewFact()
