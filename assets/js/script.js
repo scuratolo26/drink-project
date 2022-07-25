@@ -34,8 +34,8 @@ function getDrinkDetails(id) {
             drinkName.textContent = data.drinks[0].strDrink;
             drinkPic.src = data.drinks[0].strDrinkThumb;
             drinkGlass.textContent = data.drinks[0].strGlass;
-            drinkIngredient1.textContent = data.drinks[0].strIngredient1 + " " + data.drinks[0].strMeasure1;
-            drinkInstructions.textContent = data.drinks[0].strInstructions;
+            drinkIngredient1.textContent = data.drinks[0].strIngredient1 + " - " + data.drinks[0].strMeasure1;
+            drinkInstructions.innerHTML = ("Mixing instructions<br>" + data.drinks[0].strInstructions);
             addToFavoritesBtn.textContent = ("Add drink to favorites");
             addToFavoritesBtn.addEventListener("click", () => {
                 addDrinkToFavorites(); // Create this function
@@ -82,7 +82,7 @@ function displayDrinks(list) {
     list.forEach(e => {
         var li = document.createElement("p");
         li.textContent = e.strDrink;
-        li.addEventListener("click", function() {
+        li.addEventListener("click", () => {
             getDrinkDetails(e.idDrink);
         });
         li.classList.add("cocktail-list-item")
