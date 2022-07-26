@@ -14,7 +14,9 @@ COCKTAIL_SEARCH.addEventListener("keyup", (e) => {
     }
 });
 
-
+function addDrinkToFavorites() {
+    console.log("hello");
+};
 
 function getDrinkDetails(id) {
     fetch(COCKTAIL_DETAIL_QUERY_URL + id)
@@ -92,7 +94,7 @@ function displayDrinks(list) {
 }
 
 // Removes all children from a parent element
-function removeChildren(parent){
+function removeChildren(parent) {
     while (parent.lastChild) {
         parent.removeChild(parent.lastChild);
     }
@@ -112,4 +114,4 @@ function getNewFact() {
         })
 };
 // get random fact on page load - sam
-getNewFact()
+getNewFact();
