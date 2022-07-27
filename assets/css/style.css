@@ -29,13 +29,21 @@ body {
 }
 
 .cocktail-list-item {
-    width: 25%;
+    margin: 0.5rem;
 }
 
 .cocktail-list-item:hover {
     cursor: pointer;
     color: #ffe08a;
 }
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    margin-bottom: 2rem;
+   }
 
 .fact {
     background-color: #5FB038;

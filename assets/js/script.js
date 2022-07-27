@@ -26,43 +26,46 @@ function getDrinkDetails(id) {
             var drinkName = document.createElement("h2");
             var drinkPic = document.createElement("img");
             var drinkGlass = document.createElement("p");
-            var drinkIngredient1 = document.createElement("p");
-            var drinkMeasure1 = document.createElement("p");
+            var ingredientTitle = document.createElement("p");
+            var instructionTitle = document.createElement("p");
             var drinkInstructions = document.createElement("p");
             var addToFavoritesBtn = document.createElement("button");
 
             drinkName.textContent = data.drinks[0].strDrink;
             drinkPic.src = data.drinks[0].strDrinkThumb;
-            drinkGlass.textContent = data.drinks[0].strGlass;
-            drinkIngredient1.textContent = data.drinks[0].strIngredient1 + " - " + data.drinks[0].strMeasure1;
-            drinkInstructions.innerHTML = ("Mixing instructions<br>" + data.drinks[0].strInstructions);
+            ingredientTitle.textContent = ("Ingredients");
+            instructionTitle.textContent = ("Mixing Instructions");
+            drinkGlass.innerHTML = ("Glass type - " + data.drinks[0].strGlass);
+            drinkInstructions.innerHTML = (data.drinks[0].strInstructions);
             addToFavoritesBtn.textContent = ("Add drink to favorites");
             addToFavoritesBtn.addEventListener("click", () => {
                 addDrinkToFavorites(); // Create this function
             });
 
+            drinkName.classList.add("title", "is-size-1", "has-text-white", "has-text-centered");
+            drinkPic.classList.add("image", "center");
+            ingredientTitle.classList.add("is-size-3", "s-underline");
+            instructionTitle.classList.add("is-size-3", "s-underline");
+            addToFavoritesBtn.classList.add("button", "is-light", "is-centered");
 
             COCKTAIL_LIST.appendChild(drinkName);
             COCKTAIL_LIST.appendChild(drinkPic);
+            COCKTAIL_LIST.appendChild(ingredientTitle);
+            for (var i = 0; i < 16; i++) {
+                var ingredient = (data.drinks[0]["strIngredient" + i.toString()]);
+                var measurement = (data.drinks[0]["strMeasure" + i.toString()]);
+                if (ingredient && measurement) {
+                    var e1 = document.createElement("p");
+                    e1.textContent = (ingredient + " - " + measurement);
+                    COCKTAIL_LIST.appendChild(e1);
+                }
+            }
+            COCKTAIL_LIST.appendChild(instructionTitle);
             COCKTAIL_LIST.appendChild(drinkGlass);
-            COCKTAIL_LIST.appendChild(drinkIngredient1);
-            COCKTAIL_LIST.appendChild(drinkMeasure1);
             COCKTAIL_LIST.appendChild(drinkInstructions);
             COCKTAIL_LIST.appendChild(addToFavoritesBtn);
 
-
-            // console.log(data.drinks[0].strDrink);
-
-            // for(var i=0; i<16; i++) {
-            //     str = "data.drinks[0].strMeasure" + i
-            //     if (str.length > 1) {
-            //         console.log(data.strMeasure[i]);
-
-            //     }
-            // }
-
-
-            console.log(data);
+            console.log(data.drinks[0]);
         })
 }
 
@@ -79,13 +82,17 @@ function getDrink() {
 }
 
 function displayDrinks(list) {
+    var title = document.createElement("p");
+    title.innerHTML = ("Click button below to get more information<br>");
+    title.classList.add("is-size-5", "has-text-white", "has-text-centered");
+    COCKTAIL_LIST.appendChild(title);
     list.forEach(e => {
-        var li = document.createElement("p");
+        var li = document.createElement("button");
         li.textContent = e.strDrink;
         li.addEventListener("click", () => {
             getDrinkDetails(e.idDrink);
         });
-        li.classList.add("cocktail-list-item")
+        li.classList.add("cocktail-list-item", "button", "is-light")
         COCKTAIL_LIST.appendChild(li);
     });
 
