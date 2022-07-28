@@ -111,8 +111,7 @@ function getDrinkDetails(id) {
 }
 
 function getDrink() {
-    // fetch(DRINK_QUERY_URL + COCKTAIL_SEARCH.value)
-    fetch(DRINK_QUERY_URL + cocktailSearch)
+    fetch(DRINK_QUERY_URL + COCKTAIL_SEARCH.value)
         .then(function (response) {
             return response.json();
         })
