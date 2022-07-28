@@ -52,3 +52,7 @@ body {
 button {
     margin-top: 10px;
 }
+
+.favButton {
+    margin: 5px;
+}

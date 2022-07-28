@@ -4,8 +4,10 @@ const RANDOM_FACT_QUERY = ("https://uselessfacts.jsph.pl/random.json?language=en
 const COCKTAIL_SEARCH = document.querySelector("#cocktail-search");
 const COCKTAIL_SEARCH_BTN = document.querySelector("#cocktail-search-btn");
 const COCKTAIL_LIST = document.querySelector(".cocktail-container")
+var cocktailSearch = "";
 
 COCKTAIL_SEARCH_BTN.addEventListener("click", () => {
+    cocktailSearch = COCKTAIL_SEARCH.value;
     getDrink();
 });
 COCKTAIL_SEARCH.addEventListener("keyup", (e) => {
@@ -14,7 +16,44 @@ COCKTAIL_SEARCH.addEventListener("keyup", (e) => {
     }
 });
 
+var favorites = [];
+var drinkName1 = "";
+var drink;
+var favoritesContainerEl = $("#favorites-container");
 
+function addDrinkToFavorites() {
+    console.log(drink);
+    favorites.push(drink);
+    localStorage.setItem('drink', JSON.stringify(favorites));
+    setFavorites();
+};
+
+function setFavorites() {
+    favoritesContainerEl.empty();
+
+    for (let i = 0; i < favorites.length; i++) {
+        var drink1 = favorites[i];
+        var favButtonEl = $('<button>').text(drink1.strDrink);
+        favButtonEl.attr('id', drink1.idDrink);
+        favButtonEl.addClass('button is-light favButton');
+        favButtonEl.attr('type', 'button');
+
+        favoritesContainerEl.append(favButtonEl);
+    }
+    $(".favButton").on("click", function (event) {
+        event.preventDefault();
+        var id = $(this).attr('id');
+        getDrinkDetails(id);
+    });
+};
+
+function loadFavorites() {
+    var temp = JSON.parse(localStorage.getItem('drink'));
+    console.log(temp);
+    if (temp !== null) {
+        favorites = temp;
+    }
+};
 
 function getDrinkDetails(id) {
     fetch(COCKTAIL_DETAIL_QUERY_URL + id)
@@ -32,6 +71,8 @@ function getDrinkDetails(id) {
             var addToFavoritesBtn = document.createElement("button");
 
             drinkName.textContent = data.drinks[0].strDrink;
+            drinkName1 = data.drinks[0].strDrink;
+            drink = data.drinks[0];
             drinkPic.src = data.drinks[0].strDrinkThumb;
             ingredientTitle.textContent = ("Ingredients");
             instructionTitle.textContent = ("Mixing Instructions");
@@ -70,13 +111,15 @@ function getDrinkDetails(id) {
 }
 
 function getDrink() {
-    fetch(DRINK_QUERY_URL + COCKTAIL_SEARCH.value)
+    // fetch(DRINK_QUERY_URL + COCKTAIL_SEARCH.value)
+    fetch(DRINK_QUERY_URL + cocktailSearch)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
             removeChildren(COCKTAIL_LIST);
             displayDrinks(data.drinks);
+            console.log(data);
         })
         .catch(error => console.log('error', error));
 }
@@ -99,7 +142,7 @@ function displayDrinks(list) {
 }
 
 // Removes all children from a parent element
-function removeChildren(parent){
+function removeChildren(parent) {
     while (parent.lastChild) {
         parent.removeChild(parent.lastChild);
     }
@@ -119,4 +162,6 @@ function getNewFact() {
         })
 };
 // get random fact on page load - sam
+loadFavorites();
 getNewFact();
+setFavorites();
