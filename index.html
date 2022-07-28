@@ -10,8 +10,9 @@
   <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-
 <body>
+
+  <!-- Title section -->
   <section class="hero is-small">
     <div class="hero-body">
       <p class="title has-text-white is-size-1">
@@ -23,8 +24,10 @@
     </div>
   </section>
 
+  <!-- Main content container -->
   <div class="tile is-ancestor">
 
+    <!-- Search section -->
     <div class="tile is-4 is-vertical is-parent">
       <div class="tile is-child box search">
         <p class="has-text-black title">Search</p>
@@ -33,26 +36,39 @@
         <button class="button is-light" id="cocktail-search-btn">Search</button>
       </div>
 
+      <!-- Favorites section -->
       <div class="tile is-child box favorites">
         <p class="title">Favorites</p>
         <p id="favorites-container"></p>
       </div>
 
-      <!-- sam added this section -->
+      <!-- Random fact section -->
       <div class="tile is-child box">
         <p class="title">Random Fact</p>
         <p id="random-fact-container"></p>
         <button class="button is-light" id="newFactBtn" onclick="getNewFact()">Get New Fact</button>
       </div>
-      <!-- sam added this section -->
     </div>
 
+    <!-- Cocktail list section -->
     <div class="tile is-parent">
       <div class="tile is-child box cocktail-background">
         <p class="title has-background-warning has-text-centered">Cocktail List</p>
         <div class="cocktail-container">
         </div>
+      </div>
+    </div>
 
+  </div>
+
+  <!-- Search modal section -->
+  <div id="search-modal" class="modal">
+    <div class="modal-background"></div>
+
+    <div class="modal-content">
+      <div class="box has-text-centered">
+        <p class="is-size-4">Nothing found for your search</p>
+        <button id="close-button" class="button is-light">Okay</button>
       </div>
     </div>
   </div>

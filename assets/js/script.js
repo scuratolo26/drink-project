@@ -1,33 +1,49 @@
+// Defining constant variables
 const DRINK_QUERY_URL = ("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=");
 const COCKTAIL_DETAIL_QUERY_URL = ("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=")
 const RANDOM_FACT_QUERY = ("https://uselessfacts.jsph.pl/random.json?language=en");
 const COCKTAIL_SEARCH = document.querySelector("#cocktail-search");
 const COCKTAIL_SEARCH_BTN = document.querySelector("#cocktail-search-btn");
-const COCKTAIL_LIST = document.querySelector(".cocktail-container")
+const COCKTAIL_LIST = document.querySelector(".cocktail-container");
+const SEARCH_MODAL = document.querySelector(".modal");
+const CLOSE_BUTTON = document.querySelector("#close-button");
 var cocktailSearch = "";
 
+// Event listeners for cocktail search
 COCKTAIL_SEARCH_BTN.addEventListener("click", () => {
     cocktailSearch = COCKTAIL_SEARCH.value;
     getDrink();
 });
 COCKTAIL_SEARCH.addEventListener("keyup", (e) => {
-    if (e.keyCode == 13) {
+    if (e.key === "Enter") {
         getDrink();
     }
 });
+CLOSE_BUTTON.addEventListener("click", () => {
+    closeAllModals();
+});
 
+document.addEventListener('keydown', (event) => {
+    const e = event || window.event;
+    if (e.key === "Escape") {
+      closeAllModals();
+    }
+});
+
+// Favorites function variables
 var favorites = [];
 var drinkName1 = "";
 var drink;
 var favoritesContainerEl = $("#favorites-container");
 
+// Adding drink to localstorage when favorite button clicked
 function addDrinkToFavorites() {
-    console.log(drink);
     favorites.push(drink);
     localStorage.setItem('drink', JSON.stringify(favorites));
     setFavorites();
 };
 
+// Create button for drinks that are favored
 function setFavorites() {
     favoritesContainerEl.empty();
 
@@ -47,6 +63,7 @@ function setFavorites() {
     });
 };
 
+// Load saved drink favorites from localstorage
 function loadFavorites() {
     var temp = JSON.parse(localStorage.getItem('drink'));
     console.log(temp);
@@ -55,13 +72,17 @@ function loadFavorites() {
     }
 };
 
+// Display details for drink under cocktail list
 function getDrinkDetails(id) {
+    // Pull info from api using drink id
     fetch(COCKTAIL_DETAIL_QUERY_URL + id)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
+            // Clear container
             removeChildren(COCKTAIL_LIST);
+            // Create elements for cocktail list
             var drinkName = document.createElement("h2");
             var drinkPic = document.createElement("img");
             var drinkGlass = document.createElement("p");
@@ -70,6 +91,7 @@ function getDrinkDetails(id) {
             var drinkInstructions = document.createElement("p");
             var addToFavoritesBtn = document.createElement("button");
 
+            // Assign content to cocktail list elements
             drinkName.textContent = data.drinks[0].strDrink;
             drinkName1 = data.drinks[0].strDrink;
             drink = data.drinks[0];
@@ -80,15 +102,17 @@ function getDrinkDetails(id) {
             drinkInstructions.innerHTML = (data.drinks[0].strInstructions);
             addToFavoritesBtn.textContent = ("Add drink to favorites");
             addToFavoritesBtn.addEventListener("click", () => {
-                addDrinkToFavorites(); // Create this function
+                addDrinkToFavorites();
             });
 
+            // Assign classes to elements for styling
             drinkName.classList.add("title", "is-size-1", "has-text-white", "has-text-centered");
             drinkPic.classList.add("image", "center");
             ingredientTitle.classList.add("is-size-3", "s-underline");
             instructionTitle.classList.add("is-size-3", "s-underline");
             addToFavoritesBtn.classList.add("button", "is-light", "is-centered");
 
+            // Append elements to cocktail list
             COCKTAIL_LIST.appendChild(drinkName);
             COCKTAIL_LIST.appendChild(drinkPic);
             COCKTAIL_LIST.appendChild(ingredientTitle);
@@ -105,11 +129,10 @@ function getDrinkDetails(id) {
             COCKTAIL_LIST.appendChild(drinkGlass);
             COCKTAIL_LIST.appendChild(drinkInstructions);
             COCKTAIL_LIST.appendChild(addToFavoritesBtn);
-
-            console.log(data.drinks[0]);
         })
 }
 
+// Search for drinks using cocktail search
 function getDrink() {
     fetch(DRINK_QUERY_URL + COCKTAIL_SEARCH.value)
         .then(function (response) {
@@ -120,9 +143,14 @@ function getDrink() {
             displayDrinks(data.drinks);
             console.log(data);
         })
-        .catch(error => console.log('error', error));
+        .catch(error => {
+            console.log(error);
+            SEARCH_MODAL.classList.add("is-active", "is-clipped");
+
+        });
 }
 
+// Display possible drinks when searched
 function displayDrinks(list) {
     var title = document.createElement("p");
     title.innerHTML = ("Click button below to get more information<br>");
@@ -147,10 +175,21 @@ function removeChildren(parent) {
     }
 }
 
+// Remove modal class so it is hidden
+function closeModal($el) {
+    $el.classList.remove('is-active');
+  }
 
-// define container variable - sam
+// Remove active modal class for all modals
+function closeAllModals() {
+    (document.querySelectorAll('.modal') || []).forEach(($modal) => {
+      closeModal($modal);
+    });
+}
+
+// Define container variable
 var factContainer = $("#random-fact-container");
-// get random fact and display in container - sam
+// Get random fact and display in container
 function getNewFact() {
     fetch(RANDOM_FACT_QUERY)
         .then(function (response) {
@@ -160,7 +199,7 @@ function getNewFact() {
             factContainer.text(data.text);
         })
 };
-// get random fact on page load - sam
+// Get random fact on page load
 loadFavorites();
 getNewFact();
 setFavorites();
